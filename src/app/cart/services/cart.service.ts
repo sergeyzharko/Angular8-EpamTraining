@@ -5,7 +5,7 @@ import { Product } from '../../products/models/product.model';
   providedIn: 'root'
 })
 export class CartService {
-  cart = [];
+  private cart = [];
 
   getCart(): Array<Product> {
     return this.cart;
