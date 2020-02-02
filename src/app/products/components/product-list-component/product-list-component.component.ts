@@ -8,7 +8,7 @@ import { ProductsService } from '../../services/products.service';
 })
 export class ProductListComponentComponent implements OnInit {
 
-  products;
+  products; // ? почему без типа?
 
   constructor(private productsService: ProductsService) { }
 
@@ -16,7 +16,7 @@ export class ProductListComponentComponent implements OnInit {
     this.getProducts();
   }
 
-  getProducts(): void {
+  private getProducts(): void {
     this.products = this.productsService.getProducts();
   }
 

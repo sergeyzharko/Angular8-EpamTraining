@@ -16,11 +16,11 @@ export class CartComponentComponent implements OnInit {
     this.getCart();
   }
 
-  getCart(): void {
+  private getCart(): void {
     this.cart = this.cartService.getCart();
   }
 
-  clearCart(): void {
+  onClearCart(): void {
     this.cartService.clearCart();
     this.getCart();
   }
