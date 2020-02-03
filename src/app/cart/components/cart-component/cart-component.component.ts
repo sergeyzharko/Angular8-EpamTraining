@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../../services/cart.service';
+import { Product } from './../../../products/models/product.model';
 
 @Component({
   selector: 'app-cart-component',
@@ -8,7 +9,8 @@ import { CartService } from '../../services/cart.service';
 })
 export class CartComponentComponent implements OnInit {
 
-  cart;
+  cart: Array<Product>;
+  sum: number;
 
   constructor(private cartService: CartService) { }
 
@@ -18,6 +20,10 @@ export class CartComponentComponent implements OnInit {
 
   private getCart(): void {
     this.cart = this.cartService.getCart();
+  }
+
+  getSum(): string {
+    return `Sum: ${this.cartService.getSum()}`;
   }
 
   onClearCart(): void {

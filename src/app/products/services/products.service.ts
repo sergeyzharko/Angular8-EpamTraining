@@ -9,7 +9,8 @@ export class ProductsService {
 
   private products = [
     new Product(1, 'Car', 'Lada', 5, Category.Car, true),
-    new Product(2, 'House', 'Odnushka', 10, Category.House, true)
+    new Product(2, 'Apartment', 'Odnushka', 10, Category.House, true),
+    new Product(2, 'Dacha', 'Domik', 8, Category.House, false)
   ];
 
   getProducts(): Array<Product> {
