@@ -1,0 +1,15 @@
+<div class="panel panel-default">
+    <div class="panel-heading" appStyle #p [ngStyle]="setStyles()">{{ item.name }}
+        <div class="panel-body">
+            <ul>
+                <li>Price: {{ item.price }}</li>
+                <li>Count: {{ item.count }}</li>
+            </ul>
+        </div>
+        <div class="btn-group">
+            <button type="button" class="btn btn-primary" (click)="onPlus($event)">+</button>
+            <button type="button" class="btn btn-primary" (click)="onMinus($event)">-</button>
+            <button type="button" class="btn btn-primary" (click)="onRemoveItem($event)">Remove</button>
+        </div>
+    </div>
+</div>

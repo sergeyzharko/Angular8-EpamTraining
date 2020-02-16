@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../../services/cart.service';
-import { Product } from './../../../products/models/product.model';
+import { CartItem } from '../../models/cart-item.model';
 
 @Component({
   selector: 'app-cart-component',
@@ -9,8 +9,8 @@ import { Product } from './../../../products/models/product.model';
 })
 export class CartComponentComponent implements OnInit {
 
-  cart: Array<Product>;
-  sum: number;
+  cart: Array<CartItem>;
+  yourAddress = '';
 
   constructor(private cartService: CartService) { }
 
@@ -26,9 +26,30 @@ export class CartComponentComponent implements OnInit {
     return `Sum: ${this.cartService.getSum()}`;
   }
 
+  getCount(): string {
+    return `Count: ${this.cartService.getCount()}`;
+  }
+
   onClearCart(): void {
     this.cartService.clearCart();
     this.getCart();
+  }
+
+  public onRemoveItem(item: CartItem) {
+    this.cartService.remove(item.id);
+  }
+
+  public onPlus(item: CartItem) {
+    this.cartService.plusItem(item.id);
+  }
+
+  public onMinus(item: CartItem) {
+    this.cartService.minusItem(item.id);
+  }
+
+  public addAddress(value: string) {
+    console.log('addAddress event');
+    this.yourAddress = value;
   }
 
 }

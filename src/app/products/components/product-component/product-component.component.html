@@ -1,5 +1,12 @@
-<p>{{ product.name }}</p>
-<p>Description: {{ product.description }}</p>
-<p>Price: {{ product.price }}</p>
-<button *ngIf="product.isAvailable; else isNotAvailable" (click)="onBuy(product)">Buy</button>
-<ng-template #isNotAvailable><button disabled>Buy</button></ng-template>
+<div class="panel panel-default">
+    <div class="panel-heading" [ngClass]="setClasses()">{{ product.name }}
+        <div class="panel-body">
+            <ul>
+                <li>Description: {{ product.description }}</li>
+                <li>Price: {{ product.price }}</li>
+            </ul>
+        </div>
+        <button *ngIf="product.isAvailable; else isNotAvailable" class="btn btn-primary" (click)="onBuyProduct($event)">Add</button>
+        <ng-template #isNotAvailable><button disabled class="btn btn-primary">Add</button></ng-template>
+    </div>
+</div>

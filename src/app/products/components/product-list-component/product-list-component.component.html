@@ -1,5 +1,6 @@
-<ul>
-  <li *ngFor="let product of products">
-    <app-product-component [product]="product"></app-product-component>
-  </li>
-</ul>
+<div *ngFor="let product of products">
+  <app-product-component
+    [product]="product"
+    (buyProduct)="onBuyProduct($event)">
+  </app-product-component>
+</div>

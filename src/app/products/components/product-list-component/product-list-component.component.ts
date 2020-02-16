@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../../services/products.service';
+import { CartService } from '../../../cart/services/cart.service';
+import { Product } from '../../models/product.model';
 
 @Component({
   selector: 'app-product-list-component',
@@ -8,9 +10,9 @@ import { ProductsService } from '../../services/products.service';
 })
 export class ProductListComponentComponent implements OnInit {
 
-  products; // ? почему без типа?
+  products: Array<Product>;
 
-  constructor(private productsService: ProductsService) { }
+  constructor(private productsService: ProductsService, private cartService: CartService) { }
 
   ngOnInit() {
     this.getProducts();
@@ -18,6 +20,10 @@ export class ProductListComponentComponent implements OnInit {
 
   private getProducts(): void {
     this.products = this.productsService.getProducts();
+  }
+
+  public onBuyProduct(product: Product) {
+    this.cartService.add(product);
   }
 
 }

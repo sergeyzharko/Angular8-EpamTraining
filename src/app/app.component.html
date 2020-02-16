@@ -1,3 +1,6 @@
-<h2>Online Shop</h2>
+<h2 #appTitle></h2 >
 <app-product-list-component></app-product-list-component>
-<app-cart-component></app-cart-component>
+<button (click)="toggle()">Show/Hide cart</button>
+<app-cart-component *ngIf="display"></app-cart-component>
+
+<br><button appStyle>I log when clicked!</button>

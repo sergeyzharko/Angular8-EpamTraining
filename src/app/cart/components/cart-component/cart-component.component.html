@@ -1,15 +1,24 @@
 <h2>Cart</h2>
 
 <div *ngIf="cart.length; else empty">
-  <ul>
-    <li *ngFor="let product of cart">
-      {{ product.name }}<br>
-      Price: {{ product.price }}
-    </li>
-  </ul>
-  <div>Count: {{ cart.length }}</div>
+  <div *ngFor="let item of cart">
+    <app-cart-item *ngIf="item.count"
+      [item]="item"
+      (removeItem)="onRemoveItem($event)"
+      (plus)="onPlus($event)"
+      (minus)="onMinus($event)">
+    </app-cart-item>
+  </div>
   <div [textContent]="getSum()"></div>
-  <button (click)="onClearCart()">Clear cart</button>
+  <div [textContent]="getCount()"></div>
+  <button class="btn btn-danger" (click)="onClearCart()">Clear cart</button>
+  <br><br>
+  Enter your address: 
+  <input #address
+      (keyup.enter)="addAddress(address.value)"
+      (blur)="addAddress(address.value)">
+  <p>{{yourAddress}}</p>
+
 </div>
 
 
