@@ -10,17 +10,18 @@ import { Product } from '../../models/product.model';
 })
 export class ProductListComponentComponent implements OnInit {
 
-  products: Array<Product>;
+  // products: Array<Product>;
+  products: Promise<Product[]>;
 
   constructor(private productsService: ProductsService, private cartService: CartService) { }
 
   ngOnInit() {
-    this.getProducts();
+    // this.getProducts();
   }
 
-  private getProducts(): void {
-    this.products = this.productsService.getProducts();
-  }
+  // private getProducts(): void {
+    // this.productsService.getProducts.then(data => this.products = data);
+  // }
 
   public onBuyProduct(product: Product) {
     this.cartService.addProduct(product);

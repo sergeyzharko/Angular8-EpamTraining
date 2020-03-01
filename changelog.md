@@ -34,3 +34,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Methods of CartService have been renamed
 - When you click on products in the basket, a green frame appears
+
+## [4.0.0] - 2019-03-01
+### Added
+- The following pipes have been added:
+  OrderByPipe for cart
+  async for product-list
+  currency, date for cart-item

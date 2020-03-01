@@ -30,7 +30,7 @@ export class CartService {
       item.count++;
       item.price += product.price;
     } else {
-      item = new CartItem(product.id, product.name, 1, product.price);
+      item = new CartItem(product.id, product.name, 1, product.price, new Date());
       this.cart.push(item);
     }
     this.localStorageService.setItem('cart', JSON.stringify(this.cart));

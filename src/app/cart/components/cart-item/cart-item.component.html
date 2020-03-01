@@ -2,8 +2,9 @@
     <div class="panel-heading" appStyle #p [ngStyle]="setStyles()">{{ item.name }}
         <div class="panel-body">
             <ul>
-                <li>Price: {{ item.price }}</li>
+                <li>Price: {{ item.price | currency:'USD' }}</li>
                 <li>Count: {{ item.count }}</li>
+                <li>Updated: {{ item.updated | date }}</li>
             </ul>
         </div>
         <div class="btn-group">

@@ -1,7 +1,24 @@
 <h2>Cart</h2>
 
+<div class="col-auto my-1">
+  <label class="mr-sm-2" for="fieldSelect">Sort by...</label>
+  <select class="custom-select mr-sm-2" id="fieldSelect" (change)="onSelect($event.target.value)" [(ngModel)]="selectedField.id">
+    <option *ngFor="let field of fields" value= {{field.id}}>
+      {{field.name}}
+    </option>
+  </select>
+</div>
+
+<div class="col-auto my-1">
+  <label class="mr-sm-2" for="directionSelect">Direction</label>
+  <select class="custom-select mr-sm-2" id="directionSelect" [(ngModel)]="selectedDirection">
+    <option value=true>Ascending</option>
+    <option value=false>Descending</option>
+  </select>
+</div>
+
 <div *ngIf="cart.length; else empty">
-  <div *ngFor="let item of cart">
+  <div *ngFor="let item of cart | orderByPipe:selectedField.id:selectedDirection">
     <app-cart-item *ngIf="item.count"
       [item]="item"
       (removeItem)="onRemoveItem($event)"

@@ -13,7 +13,13 @@ export class ProductsService {
     new Product(2, 'Dacha', 'Domik', 8, Category.House, false)
   ];
 
-  getProducts(): Array<Product> {
-    return this.products;
-  }
+  getProducts: Promise<Product[]> = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(this.products);
+    }, 2000);
+  }).catch(error => error) as Promise<Product[]>;
+
+  // getProducts(): Array<Product> {
+  //   return this.products;
+  // }
 }
