@@ -13,7 +13,7 @@ import { ProductListComponentComponent } from './components/product-list-compone
     SharedModule
   ],
   exports: [
-    ProductComponentComponent,
+    // ProductComponentComponent,  // приватный компонент
     ProductListComponentComponent
   ],
 })
