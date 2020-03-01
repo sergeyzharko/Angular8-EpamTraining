@@ -23,7 +23,7 @@ export class ProductListComponentComponent implements OnInit {
   }
 
   public onBuyProduct(product: Product) {
-    this.cartService.add(product);
+    this.cartService.addProduct(product);
   }
 
 }

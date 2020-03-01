@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Product } from '../../products/models/product.model';
+import { LocalStorageService } from '../../core/services/local-storage.service';
 import { CartItem } from '../models/cart-item.model';
 
 @Injectable({
@@ -7,21 +8,23 @@ import { CartItem } from '../models/cart-item.model';
 })
 export class CartService {
 
-  private cart: Array<CartItem> = [];
+  constructor(private localStorageService: LocalStorageService) { }
 
-  getCart(): Array<CartItem> {
+  private cart: Array<CartItem> = JSON.parse(this.localStorageService.getItem('cart')) || [];
+
+  cartProducts(): Array<CartItem> {
     return this.cart;
   }
 
-  getSum(): number {
+  totalSum(): number {
     return this.cart.reduce( (accumulator, currentValue) => accumulator + currentValue.price, 0 );
   }
 
-  getCount(): number {
+  totalQuantity(): number {
     return this.cart.reduce( (accumulator, currentValue) => accumulator + currentValue.count, 0 );
   }
 
-  add(product: Product) {
+  addProduct(product: Product) {
     let item = this.cart.find(x => x.id === product.id);
     if (item) {
       item.count++;
@@ -30,22 +33,26 @@ export class CartService {
       item = new CartItem(product.id, product.name, 1, product.price);
       this.cart.push(item);
     }
+    this.localStorageService.setItem('cart', JSON.stringify(this.cart));
   }
 
-  remove(id: number) {
+  removeProduct(id: number) {
     this.cart.find(x => x.id === id).count = 0;
-    console.log(this.cart);
+    this.localStorageService.setItem('cart', JSON.stringify(this.cart));
   }
 
-  plusItem(id: number) {
+  increaseQuantity(id: number) {
     this.cart.find(x => x.id === id).count++;
+    this.localStorageService.setItem('cart', JSON.stringify(this.cart));
   }
 
-  minusItem(id: number) {
+  decreaseQuantity(id: number) {
     this.cart.find(x => x.id === id).count--;
+    this.localStorageService.setItem('cart', JSON.stringify(this.cart));
   }
 
-  clearCart(): void {
+  removeAllProducts(): void {
     this.cart = [];
+    this.localStorageService.removeItem('cart');
   }
 }

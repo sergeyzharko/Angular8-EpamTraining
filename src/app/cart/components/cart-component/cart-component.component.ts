@@ -19,32 +19,32 @@ export class CartComponentComponent implements OnInit {
   }
 
   private getCart(): void {
-    this.cart = this.cartService.getCart();
+    this.cart = this.cartService.cartProducts();
   }
 
   getSum(): string {
-    return `Sum: ${this.cartService.getSum()}`;
+    return `Sum: ${this.cartService.totalSum()}`;
   }
 
   getCount(): string {
-    return `Count: ${this.cartService.getCount()}`;
+    return `Count: ${this.cartService.totalQuantity()}`;
   }
 
   onClearCart(): void {
-    this.cartService.clearCart();
+    this.cartService.removeAllProducts();
     this.getCart();
   }
 
   public onRemoveItem(item: CartItem) {
-    this.cartService.remove(item.id);
+    this.cartService.removeProduct(item.id);
   }
 
   public onPlus(item: CartItem) {
-    this.cartService.plusItem(item.id);
+    this.cartService.increaseQuantity(item.id);
   }
 
   public onMinus(item: CartItem) {
-    this.cartService.minusItem(item.id);
+    this.cartService.decreaseQuantity(item.id);
   }
 
   public addAddress(value: string) {

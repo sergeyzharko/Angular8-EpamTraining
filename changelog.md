@@ -25,3 +25,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - The application is divided into modules
 - Correction of mistakes of the first task
+
+## [3.0.0] - 2019-03-01
+### Added
+- AboutComponent with ConfigOptionsService, ConstantService and GeneratorFactory has been added
+- SharedModule and LayoutModule have been added
+- LocalStorageService for saving the cart has been added
+### Changed
+- Methods of CartService have been renamed
+- When you click on products in the basket, a green frame appears

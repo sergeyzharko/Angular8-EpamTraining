@@ -1,14 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StyleDirective } from './directives/style.directive';
+import { ClickDirective } from './directives/click.directive';
 
 
 
 @NgModule({
-  declarations: [StyleDirective],
+  declarations: [StyleDirective, ClickDirective],
   imports: [
     CommonModule
   ],
-  exports: [StyleDirective]
+  exports: [StyleDirective, ClickDirective]
 })
 export class SharedModule { }
