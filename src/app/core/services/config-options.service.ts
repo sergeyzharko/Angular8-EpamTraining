@@ -15,6 +15,7 @@ export class ConfigOptionsService {
     return this.config;
   }
 
+  // желательно типы указать
   set(id, login, email): Config {
     this.config.id = id;
     this.config.login = login;

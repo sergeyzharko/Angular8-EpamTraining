@@ -33,6 +33,9 @@ export class CartService {
       item = new CartItem(product.id, product.name, 1, product.price, new Date());
       this.cart.push(item);
     }
+    // может быть JSON.stringify() перенести в сервис localStorageService и проверять там, что приходит
+    // если объект, то вызывать, если строка, то нет.
+    // тогда код этого сервиса будет чище
     this.localStorageService.setItem('cart', JSON.stringify(this.cart));
   }
 

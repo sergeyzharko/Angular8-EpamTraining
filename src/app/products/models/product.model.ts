@@ -1,4 +1,4 @@
-import { Category } from '../../enums';
+import { Category } from '../../shared/enums/enums';
 
 export class Product {
     constructor(

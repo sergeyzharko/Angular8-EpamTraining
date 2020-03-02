@@ -7,7 +7,7 @@ export class GeneratorService {
 
   constructor() { }
 
-  getString(n): string {
+  getString(n: number): string {
     let result           = '';
     const characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     characters.split('').forEach(

@@ -12,6 +12,7 @@ import {
 })
 export class AppComponent implements AfterViewInit {
   @ViewChild('appTitle', {static: false})
+  
   title: ElementRef<HTMLInputElement>;
   display = true;
 
