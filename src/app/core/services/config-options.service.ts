@@ -15,12 +15,11 @@ export class ConfigOptionsService {
     return this.config;
   }
 
-  // желательно типы указать
-  set(id, login, email): Config {
+  set(id: number, login: string, email: string): Config {
     this.config.id = id;
     this.config.login = login;
     this.config.email = email;
-    this.localStorageService.setItem('config', JSON.stringify(this.config));
+    this.localStorageService.setItem('config', this.config);
     return this.config;
   }
 }

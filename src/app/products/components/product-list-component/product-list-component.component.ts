@@ -13,7 +13,6 @@ export class ProductListComponentComponent implements OnInit {
   // products: Array<Product>;
   products: Promise<Product[]>;
 
-  // если сервис используется в шаблоне, то он должен быть public
   constructor(public productsService: ProductsService, private cartService: CartService) { }
 
   ngOnInit() {

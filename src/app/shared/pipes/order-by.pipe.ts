@@ -11,7 +11,7 @@ export class OrderByPipe implements PipeTransform {
     console.log(val);
     console.log(dir);
     if (!Array.isArray(array)) {
-      return array; // надо вернуть то, что пришло без преобразования
+      return array;
     }
     array.sort((a: any, b: any) => {
       if (a[field] < b[field]) {
