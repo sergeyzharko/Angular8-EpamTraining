@@ -35,7 +35,7 @@ export class CartItemComponent implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    alert('Item has been removed from the cart');
+    console.log('Item has been destroyed');
   }
 
 }

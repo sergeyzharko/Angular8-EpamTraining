@@ -41,3 +41,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   OrderByPipe for cart
   async for product-list
   currency, date for cart-item
+
+## [5.0.0] - 2019-03-19
+### Added
+- Admin module with canActivateGuard, resolveGuard
+- Routing for the application, admin module, products, cart
+- AuthGuard, CanLoad, LoadChildren, Reacting to Router Events (Title), Meta Service
+- LocalStorage to the core services

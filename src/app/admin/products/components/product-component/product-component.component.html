@@ -1,0 +1,12 @@
+<div class="panel panel-default">
+    <div class="panel-heading" [ngClass]="setClasses()">{{ product.name }}
+        <div class="panel-body">
+            <ul>
+                <li>Description: {{ product.description }}</li>
+                <li>Category: {{ product.category }}</li>
+                <li>Price: {{ product.price }}</li>
+            </ul>
+        </div>
+        <button class="btn btn-primary" (click)="onEditProduct($event)">Edit</button>
+    </div>
+</div>

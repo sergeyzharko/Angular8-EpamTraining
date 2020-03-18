@@ -1,0 +1,11 @@
+<button
+  type="button"
+  class="btn btn-primary"
+  [routerLink]="['/edit']">Add new product
+</button>
+<div *ngFor="let product of productsService.getProducts|async">
+  <app-product-component
+    [product]="product"
+    [routerLink]="['/products/edit', product.id]">
+  </app-product-component>
+</div>
