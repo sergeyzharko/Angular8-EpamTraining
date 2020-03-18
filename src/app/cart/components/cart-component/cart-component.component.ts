@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CartService } from '../../services/cart.service';
 import { CartItem } from '../../models/cart-item.model';
 import { Field } from '../../models/field.model';
+import { OrderService } from '../../../orders/services/order.service';
 
 @Component({
   selector: 'app-cart-component',
@@ -22,7 +23,7 @@ export class CartComponentComponent implements OnInit {
   cart: Array<CartItem>;
   yourAddress = '';
 
-  constructor(private cartService: CartService) { }
+  constructor(private cartService: CartService, private orderService: OrderService) { }
 
   ngOnInit() {
     this.selectedField.id = 'name';
@@ -45,6 +46,10 @@ export class CartComponentComponent implements OnInit {
   onClearCart(): void {
     this.cartService.removeAllProducts();
     this.getCart();
+  }
+
+  onOrder(): void {
+    this.orderService.addOrder({ price: this.cartService.totalSum(), count: this.cartService.totalQuantity(), created: new Date()});
   }
 
   public onRemoveItem(item: CartItem) {

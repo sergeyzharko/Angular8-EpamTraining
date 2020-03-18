@@ -1,14 +1,15 @@
 import { NgModule } from '@angular/core';
-import { AboutComponent } from './components/about/about.component';
 import { SharedModule } from './../shared/shared.module';
+import { AboutComponent, LoginComponent, PathNotFoundComponent, HomeComponent } from './components';
+
 
 @NgModule({
-  declarations: [AboutComponent],
+  declarations: [HomeComponent, AboutComponent, PathNotFoundComponent, LoginComponent],
   imports: [
     SharedModule
   ],
   exports: [
-    AboutComponent
+    HomeComponent, AboutComponent, PathNotFoundComponent, LoginComponent,
   ]
 })
 export class LayoutModule { }

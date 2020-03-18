@@ -1,0 +1,13 @@
+<div *ngIf="orders.length; else empty">
+  <div *ngFor="let order of orders">
+    <ul>
+      <li>Price: {{ order.price | currency:'USD' }}</li>
+      <li>Count: {{ order.count }}</li>
+      <li>Created: {{ order.created | date }}</li>
+    </ul>
+  </div>
+</div>
+
+<ng-template #empty>
+  <div>There are no orders...</div>
+</ng-template>
