@@ -27,9 +27,9 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   ) { }
 
   @ViewChild('appTitle', {static: false})
-
-  display = true;
   title: ElementRef<HTMLInputElement>;
+
+  display = true; // надо ниже, а то, что выше не разъединять
 
   ngOnInit() {
     this.setPageTitles();
