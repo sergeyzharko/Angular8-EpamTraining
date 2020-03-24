@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { Router } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 import { CartModule } from './cart/cart.module';
 import { ProductsModule } from './products/products.module';
@@ -21,6 +22,7 @@ import { OrdersModule } from './orders/orders.module';
     SharedModule,
     LayoutModule,
     OrdersModule,
+    HttpClientModule,
     // MUST BE LAST
     AppRoutingModule
   ],

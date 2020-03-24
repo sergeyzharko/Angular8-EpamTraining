@@ -1,16 +1,7 @@
-import { Injectable, Inject } from '@angular/core';
-import {
-  HttpClient,
-  HttpHeaders,
-  HttpResponse,
-  HttpErrorResponse
-} from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Product } from '../../products/models/product.model';
 import { LocalStorageService } from '../../core/services/local-storage.service';
 import { CartItem } from '../models/cart-item.model';
-import { Observable, throwError } from 'rxjs';
-import { catchError, retry, publish, refCount, share  } from 'rxjs/operators';
-import { UsersAPI } from './../cart.config';
 
 @Injectable({
   providedIn: 'root'
@@ -66,79 +57,3 @@ export class CartService {
     this.localStorageService.removeItem('cart');
   }
 }
-
-
-
-
-
-
-
-
-
-export class CartService {
-  constructor(
-    private http: HttpClient,
-    @Inject(UsersAPI) private usersUrl: string
-  ) {}
-
-  cartProducts(): Observable<CartItem[]> {
-    return this.http.get<CartItem[]>(this.usersUrl).pipe(
-      retry(3), // три попытки в случае ошибки
-      publish(),
-      refCount(),
-      catchError(this.handleError)
-    );
-  }
-
-  cartProduct(id: number): Observable<CartItem> {
-    const url = `${this.usersUrl}/${id}`;
-
-    return this.http.get<CartItem>(url).pipe(
-      retry(3),
-      share(), // = publish() + refCount()
-      catchError(this.handleError)
-    );
-  }
-
-  updateProduct(user: CartItem): Observable<CartItem> {
-    const url = `${this.usersUrl}/${user.id}`;
-    const body = JSON.stringify(user);
-    const options = {
-      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-    };
-
-    return this.http
-          .put<CartItem>(url, body, options)
-          .pipe( catchError(this.handleError) );
-  }
-
-  addProduct(user: CartItem): Observable<CartItem> {
-    const url = this.usersUrl;
-    const body = JSON.stringify(user);
-    const options = {
-      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-    };
-
-    return this.http
-      .post<CartItem>(url, body, options)
-      .pipe(
-        catchError( this.handleError )
-      );
-  }
-
-  deleteProduct(user: CartItem) {}
-
-  private handleError(err: HttpErrorResponse) {
-    // A client-side or network error occurred.
-    if (err.error instanceof Error) {
-      console.error('An error occurred:', err.error.message);
-    } else {
-      // The backend returned an unsuccessful response code.
-      // The response body may contain clues as to what went wrong,
-      console.error(`Backend returned code ${err.status}, body was: ${err.error}`);
-    }
-
-    return throwError('Something bad happened; please try again later.');
-  }
-}
-

@@ -30,8 +30,6 @@ export class ProductFormComponent implements OnInit {
     //       isAvailable: true}
     //   );
     // });
-
-
     this.product = new Product();
 
     const observer = {
@@ -40,20 +38,26 @@ export class ProductFormComponent implements OnInit {
     };
     this.route.paramMap
       .pipe(
-        switchMap((params: ParamMap) => this.productsService.getProduct(+params.get('id'))))
-      .subscribe(observer);
+        // switchMap((params: ParamMap) => this.productsService.getProduct(+params.get('productID')))
 
+        switchMap((params: ParamMap) => {
+          return params.get('productID')
+            ? this.productsService.getProduct(+params.get('productID'))
+            // when Promise.resolve(null) => task = null => {...null} => {}
+            : Promise.resolve(null);
+        }))
+      .subscribe(observer);
   }
 
   onSaveProduct() {
     const product = { ...this.product } as Product;
     console.log(product);
-    if (product.id >= 0) {
-      this.productsService.updateProduct(product);
-    } else {
-      this.productsService.createProduct(product);
-    }
-    this.onGoBack();
+
+    const method = product.id ? 'updateProduct' : 'createProduct';
+    this.productsService[method](product)
+      .then(() => this.onGoBack())
+      .catch(err => console.log(err));
+
   }
 
   onGoBack(): void {

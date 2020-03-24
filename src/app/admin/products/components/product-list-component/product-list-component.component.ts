@@ -10,13 +10,25 @@ import { Product } from '../../models/product.model';
 })
 export class ProductListComponentComponent implements OnInit {
 
-  // products: Array<Product>;
-  products: Promise<Product[]>;
+  products: Array<Product>;
+  // products: Promise<Product[]>;
 
   constructor(public productsService: ProductsService, private cartService: CartService) { }
 
   ngOnInit() {
-    // this.getProducts();
+    this.getProducts();
   }
+
+  private getProducts(): void {
+    this.productsService.getProducts().then(data => this.products = data);
+  }
+
+  onDeleteProduct(task: Product) {
+    this.productsService
+      .deleteProduct(task)
+      .then(() => this.productsService.getProducts().then(data => this.products = data))
+      .catch(err => console.log(err));
+  }
+
 
 }

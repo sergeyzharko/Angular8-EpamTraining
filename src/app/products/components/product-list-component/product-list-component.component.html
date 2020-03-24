@@ -1,4 +1,4 @@
-<div *ngFor="let product of productsService.getProducts|async">
+<div *ngFor="let product of products">
   <app-product-component
     [product]="product"
     (buyProduct)="onBuyProduct($event)">

@@ -1,0 +1,44 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Car",
+      "description": "Lada",
+      "price": 5,
+      "category": 1,
+      "isAvailable": true
+    },
+    {
+      "id": 2,
+      "name": "Apartment",
+      "description": "Odnushka1",
+      "price": 10,
+      "category": 0,
+      "isAvailable": true
+    },
+    {
+      "id": 2,
+      "name": "Dacha",
+      "description": "Domik",
+      "price": 8,
+      "category": 0,
+      "isAvailable": false
+    }
+  ],
+  "cart": [
+    {
+      "id": 2,
+      "name": "Apartment",
+      "count": 10,
+      "price": 30,
+      "updated": "2020-03-01T13:54:43.992Z"
+    },
+    {
+      "id": 1,
+      "name": "Car",
+      "count": 11,
+      "price": 55,
+      "updated": "2020-03-01T13:54:42.713Z"
+    }
+  ]
+}
