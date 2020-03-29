@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
+import { Location } from '@angular/common';
 
 import { Product } from '../../models/product.model';
 import { Category } from '../../../../shared/enums/enums';
@@ -13,7 +14,12 @@ import { ProductsService } from '../../../../products/services/products.service'
 export class ProductFormComponent implements OnInit {
   product: Product;
 
-  constructor(private productsService: ProductsService, private route: ActivatedRoute, private router: Router) {}
+  constructor(
+    private productsService: ProductsService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private location: Location
+  ) {}
 
   ngOnInit(): void {
     // this.route.params.subscribe(params => {
@@ -61,6 +67,7 @@ export class ProductFormComponent implements OnInit {
   }
 
   onGoBack(): void {
-    this.router.navigate(['/admin/products']);
+    // this.router.navigate(['/admin/products']);
+    this.location.back();
   }
 }

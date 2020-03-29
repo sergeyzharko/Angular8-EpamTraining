@@ -10,6 +10,7 @@ import { Router, RouterOutlet, NavigationEnd } from '@angular/router';
 import { Title, Meta } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
 import { filter, map, switchMap } from 'rxjs/operators';
+import { AppSettingsService } from './core/services/app-settings.service';
 
 
 @Component({
@@ -24,6 +25,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     private router: Router,
     private titleService: Title,
     private metaService: Meta,
+    private appSettingsService: AppSettingsService
   ) { }
 
   @ViewChild('appTitle', {static: false})
@@ -33,6 +35,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnInit() {
     this.setPageTitles();
+    console.log('Settings: ', this.appSettingsService.getSettings());
   }
 
   ngOnDestroy() {

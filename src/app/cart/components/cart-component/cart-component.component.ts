@@ -3,6 +3,7 @@ import { CartService } from '../../services/cart.service';
 import { CartItem } from '../../models/cart-item.model';
 import { Field } from '../../models/field.model';
 import { OrderService } from '../../../orders/services/order.service';
+import { Observable, throwError } from 'rxjs';
 
 @Component({
   selector: 'app-cart-component',
@@ -20,7 +21,7 @@ export class CartComponentComponent implements OnInit {
      new Field('updated', 'Updated' )
   ];
 
-  cart: Array<CartItem>;
+  cart: CartItem[];
   yourAddress = '';
 
   constructor(private cartService: CartService, private orderService: OrderService) { }
@@ -32,7 +33,11 @@ export class CartComponentComponent implements OnInit {
   }
 
   private getCart(): void {
-    this.cart = this.cartService.cartProducts();
+    this.cartService.cartProducts()
+    .subscribe(data => {
+        this.cart = data as CartItem[];
+    });
+    console.log(this.cart);
   }
 
   getSum(): string {
@@ -53,15 +58,24 @@ export class CartComponentComponent implements OnInit {
   }
 
   public onRemoveItem(item: CartItem) {
-    this.cartService.removeProduct(item.id);
+    this.cartService.removeProduct(item).subscribe(data => {
+      item = data as CartItem;
+      this.getCart();
+    });
   }
 
   public onPlus(item: CartItem) {
-    this.cartService.increaseQuantity(item.id);
+    item.count++;
+    this.cartService.updateProduct(item).subscribe(data => {
+      item = data as CartItem;
+    });
   }
 
   public onMinus(item: CartItem) {
-    this.cartService.decreaseQuantity(item.id);
+    item.count--;
+    this.cartService.updateProduct(item).subscribe(data => {
+      item = data as CartItem;
+    });
   }
 
   public addAddress(value: string) {

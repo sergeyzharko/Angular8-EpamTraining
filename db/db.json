@@ -29,16 +29,16 @@
     {
       "id": 2,
       "name": "Apartment",
-      "count": 10,
+      "count": 17,
       "price": 30,
       "updated": "2020-03-01T13:54:43.992Z"
     },
     {
       "id": 1,
       "name": "Car",
-      "count": 11,
-      "price": 55,
-      "updated": "2020-03-01T13:54:42.713Z"
+      "count": 3,
+      "price": 5,
+      "updated": "2020-03-29T19:32:08.380Z"
     }
   ]
 }

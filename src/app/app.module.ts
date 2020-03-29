@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { httpInterceptorProviders } from './core/interceptors';
 
 import { CartModule } from './cart/cart.module';
 import { ProductsModule } from './products/products.module';
@@ -26,7 +27,7 @@ import { OrdersModule } from './orders/orders.module';
     // MUST BE LAST
     AppRoutingModule
   ],
-  providers: [],
+  providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule {
