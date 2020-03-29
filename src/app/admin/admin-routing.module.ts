@@ -24,11 +24,11 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'edit/products/:productID',
+    path: 'products/edit/:productID',
     component: ProductFormComponent
   },
   {
-    path: 'edit/product/add',
+    path: 'products/add',
     component: ProductFormComponent
   },
   {

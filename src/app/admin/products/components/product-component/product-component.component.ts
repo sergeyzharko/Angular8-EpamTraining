@@ -11,9 +11,15 @@ export class ProductComponentComponent {
   @Input() product: Product;
 
   @Output() buyProduct: EventEmitter<Product> = new EventEmitter<Product>();
+  @Output() deleteProduct = new EventEmitter<Product>();
 
   public onEditProduct(): void {
     this.buyProduct.emit(this.product);
+  }
+
+  public onDeleteProduct() {
+    console.log('delete');
+    this.deleteProduct.emit(this.product);
   }
 
   public setClasses() {

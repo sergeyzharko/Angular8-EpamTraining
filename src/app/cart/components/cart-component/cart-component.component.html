@@ -17,7 +17,7 @@
   </select>
 </div>
 
-<div *ngIf="cart.length; else empty">
+<div *ngIf="cart && cart.length; else empty">
   <div *ngFor="let item of cart | orderByPipe:selectedField.id:selectedDirection">
     <app-cart-item *ngIf="item.count"
       [item]="item"

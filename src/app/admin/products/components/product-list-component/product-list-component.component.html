@@ -1,11 +1,12 @@
 <button
   type="button"
   class="btn btn-primary"
-  [routerLink]="['/edit']">Add new product
+  [routerLink]="['add']">Add new product
 </button>
-<div *ngFor="let product of productsService.getProducts|async">
+<div *ngFor="let product of products">
   <app-product-component
     [product]="product"
-    [routerLink]="['/products/edit', product.id]">
+    [routerLink]="['edit', product.id]"
+    (deleteProduct)="onDeleteProduct($event)">
   </app-product-component>
 </div>
