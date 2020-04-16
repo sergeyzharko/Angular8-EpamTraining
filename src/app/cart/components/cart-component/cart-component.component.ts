@@ -1,9 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { CartService } from '../../services/cart.service';
+// import { CartService } from '../../services/cart.service';
 import { CartItem } from '../../models/cart-item.model';
 import { Field } from '../../models/field.model';
 import { OrderService } from '../../../orders/services/order.service';
 import { Observable, throwError } from 'rxjs';
+import * as CartActions from '../../../core/@ngrx/cart/cart.actions';
+
+// @Ngrx
+import { Store, select } from '@ngrx/store';
+import { AppState, CartState } from '../../../core/@ngrx';
 
 @Component({
   selector: 'app-cart-component',
@@ -23,59 +28,88 @@ export class CartComponentComponent implements OnInit {
 
   cart: CartItem[];
   yourAddress = '';
+  cartState$: Observable<CartState>;
 
-  constructor(private cartService: CartService, private orderService: OrderService) { }
+  constructor(
+    // private cartService: CartService,
+    private orderService: OrderService,
+    private store: Store<AppState>
+  ) { }
 
   ngOnInit() {
+    console.log('We have a store! ', this.store);
+    this.cartState$ = this.store.pipe(select('cart'));
+    this.store.dispatch(CartActions.cartCart());
+    console.log('this.cartState$', this.cartState$);
     this.selectedField.id = 'name';
     this.selectedDirection = 'true';
     this.getCart();
   }
 
   private getCart(): void {
-    this.cartService.cartProducts()
-    .subscribe(data => {
-        this.cart = data as CartItem[];
+    // this.cartService.cartProducts()
+    // .subscribe(data => {
+    //   this.cart = data as CartItem[];
+    // });
+
+    this.cartState$.subscribe(data => {
+      this.cart = data.data as CartItem[];
     });
-    console.log(this.cart);
+
+    // this.store.dispatch(CartActions.cartCart());
   }
 
-  getSum(): string {
-    return `Sum: ${this.cartService.totalSum()}`;
+  getSum(): number {
+    let sum = 0;
+    console.log('this.cart', this.cart);
+    this.cart.forEach(element => sum = + Number(element.price));
+    return sum;
+    // return `Sum: ${this.cartService.totalSum()}`;
   }
 
-  getCount(): string {
-    return `Count: ${this.cartService.totalQuantity()}`;
+  getCount(): number {
+    let count = 0;
+    this.cart.forEach(element => count = + Number(element.count));
+    return count;
+    // return `Count: ${this.cartService.totalQuantity()}`;
   }
 
   onClearCart(): void {
-    this.cartService.removeAllProducts();
-    this.getCart();
+    // this.cartService.removeAllProducts();
+    // this.getCart();
   }
 
   onOrder(): void {
-    this.orderService.addOrder({ price: this.cartService.totalSum(), count: this.cartService.totalQuantity(), created: new Date()});
+    this.orderService.addOrder({ price: this.getSum(), count: this.getCount(), created: new Date()});
   }
 
-  public onRemoveItem(item: CartItem) {
-    this.cartService.removeProduct(item).subscribe(data => {
-      item = data as CartItem;
-      this.getCart();
-    });
+  public onRemoveItem(cartItem: CartItem) {
+    // this.cartService.removeProduct(item).subscribe(data => {
+    //   item = data as CartItem;
+    //   this.getCart();
+    // });
+    this.store.dispatch(CartActions.removeProduct({ cartItem }));
+    this.store.dispatch(CartActions.cartCart());
   }
 
-  public onPlus(item: CartItem) {
-    item.count++;
-    this.cartService.updateProduct(item).subscribe(data => {
-      item = data as CartItem;
-    });
+  public onPlus(cartItem: CartItem) {
+    cartItem = { ...cartItem } as CartItem;
+    cartItem.count++;
+    // item.count++;
+    // this.cartService.updateProduct(item).subscribe(data => {
+    //   item = data as CartItem;
+    // });
+    this.store.dispatch(CartActions.updateProduct({ cartItem }));
   }
 
-  public onMinus(item: CartItem) {
-    item.count--;
-    this.cartService.updateProduct(item).subscribe(data => {
-      item = data as CartItem;
-    });
+  public onMinus(cartItem: CartItem) {
+    cartItem = { ...cartItem } as CartItem;
+    cartItem.count--;
+    // item.count--;
+    // this.cartService.updateProduct(item).subscribe(data => {
+    //   item = data as CartItem;
+    // });
+    this.store.dispatch(CartActions.updateProduct({ cartItem }));
   }
 
   public addAddress(value: string) {

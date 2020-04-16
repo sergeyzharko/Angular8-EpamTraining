@@ -17,8 +17,12 @@
   </select>
 </div>
 
+<p *ngIf="(cartState$ | async).error as value">{{value}}</p>
+
 <div *ngIf="cart && cart.length; else empty">
-  <div *ngFor="let item of cart | orderByPipe:selectedField.id:selectedDirection">
+  <!-- <div *ngFor="let item of cart | orderByPipe:selectedField.id:selectedDirection"> -->
+  <div *ngFor="let item of cart">
+  <!-- <div *ngFor='let item of (cartState$ | async).data'> -->
     <app-cart-item *ngIf="item.count"
       [item]="item"
       (removeItem)="onRemoveItem($event)"
