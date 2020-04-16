@@ -5,6 +5,9 @@ import { Product } from '../../models/product.model';
 import { Location } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { AutoUnsubscribe } from './../../../core';
+import { Store, select } from '@ngrx/store';
+import { AppState, CartState } from '../../../core/@ngrx';
+import * as CartActions from '../../../core/@ngrx/cart/cart.actions';
 
 @Component({
   selector: 'app-product-list-component',
@@ -20,7 +23,8 @@ export class ProductListComponentComponent implements OnInit {
   constructor(
     public productsService: ProductsService,
     private cartService: CartService,
-    private location: Location
+    private location: Location,
+    private store: Store<AppState>
   ) { }
 
   private sub: Subscription;
@@ -39,9 +43,12 @@ export class ProductListComponentComponent implements OnInit {
     //   error: (err: any) => console.log(err)
     // };
     // this.sub = this.cartService.addProduct(product).subscribe(observer);
-    this.cartService.addProduct(product).subscribe(data => {
-      console.log('In the cart: ', data);
-    });
+
+    // this.cartService.addProduct(product).subscribe(data => {
+    //   console.log('In the cart: ', data);
+    // });
+
+    this.store.dispatch(CartActions.addProduct({ product }));
   }
 
   // ngOnDestroy(): void {

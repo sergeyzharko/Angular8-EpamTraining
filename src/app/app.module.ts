@@ -11,6 +11,7 @@ import { SharedModule } from './shared/shared.module';
 import { LayoutModule } from './layout/layout.module';
 import { AppRoutingModule } from './app-routing.module';
 import { OrdersModule } from './orders/orders.module';
+import { RootStoreModule } from './core/@ngrx/root-store.module';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { OrdersModule } from './orders/orders.module';
     LayoutModule,
     OrdersModule,
     HttpClientModule,
+    RootStoreModule,
     // MUST BE LAST
     AppRoutingModule
   ],

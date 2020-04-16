@@ -1,4 +1,12 @@
-export class CartItem {
+export interface CartItemInterface {
+  id: number;
+  name: string;
+  count: number;
+  price: number;
+  updated: Date;
+}
+
+export class CartItem implements CartItemInterface {
     constructor(
         public id: number,
         public name: string,

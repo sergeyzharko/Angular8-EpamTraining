@@ -6,12 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [1.0.0] - 2019-01-25
+## [1.0.0] - 2020-01-25
 ### Added
 - Simple shop
 - Task 1 has been done
 
-## [2.0.0] - 2019-02-16
+## [2.0.0] - 2020-02-16
 ### Added
 - Bootstrap and styles
 - Task 2 has been done
@@ -26,7 +26,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - The application is divided into modules
 - Correction of mistakes of the first task
 
-## [3.0.0] - 2019-03-01
+## [3.0.0] - 2020-03-01
 ### Added
 - AboutComponent with ConfigOptionsService, ConstantService and GeneratorFactory has been added
 - SharedModule and LayoutModule have been added
@@ -35,21 +35,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Methods of CartService have been renamed
 - When you click on products in the basket, a green frame appears
 
-## [4.0.0] - 2019-03-01
+## [4.0.0] - 2020-03-01
 ### Added
 - The following pipes have been added:
   OrderByPipe for cart
   async for product-list
   currency, date for cart-item
 
-## [5.0.0] - 2019-03-19
+## [5.0.0] - 2020-03-19
 ### Added
 - Admin module with canActivateGuard, resolveGuard
 - Routing for the application, admin module, products, cart
 - AuthGuard, CanLoad, LoadChildren, Reacting to Router Events (Title), Meta Service
 - LocalStorage to the core services
 
-## [5.0.0] - 2019-03-29
+## [5.0.0] - 2020-03-29
 ### Added
 - JSON-server (db/db.json)
 - AppSettingsService to save settings in LocalStorage
@@ -58,3 +58,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - redid CartService to work with http according to the Observable scheme
 - redid ProductsService to work with http according to the Promise scheme
+
+## [5.0.0] - 2020-04-17
+### Added
+- NPM modules @ngrx/effects, @ngrx/entity, @ngrx/store, @ngrx/store-devtools
+- Store, Actions, Effects, Reducer, State for the Cart component
+- Router GO
+- Collection
