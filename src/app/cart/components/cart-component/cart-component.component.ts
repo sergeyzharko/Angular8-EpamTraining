@@ -32,7 +32,6 @@ export class CartComponentComponent implements OnInit {
 
   constructor(
     // private cartService: CartService,
-    private orderService: OrderService,
     private store: Store<AppState>
   ) { }
 
@@ -61,7 +60,6 @@ export class CartComponentComponent implements OnInit {
 
   getSum(): number {
     let sum = 0;
-    console.log('this.cart', this.cart);
     this.cart.forEach(element => sum = + Number(element.price));
     return sum;
     // return `Sum: ${this.cartService.totalSum()}`;
@@ -77,10 +75,6 @@ export class CartComponentComponent implements OnInit {
   onClearCart(): void {
     // this.cartService.removeAllProducts();
     // this.getCart();
-  }
-
-  onOrder(): void {
-    this.orderService.addOrder({ price: this.getSum(), count: this.getCount(), created: new Date()});
   }
 
   public onRemoveItem(cartItem: CartItem) {
