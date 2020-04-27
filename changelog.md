@@ -65,3 +65,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Store, Actions, Effects, Reducer, State for the Cart component
 - Router GO
 - Collection
+
+
+## [6.0.0] - 2020-04-28
+### Added
+- NewOrderComponent with reactive form and validation
+- EmailDirective for validation

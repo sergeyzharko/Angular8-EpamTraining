@@ -6,8 +6,14 @@ export interface OrderInterface {
 
 export class Order implements OrderInterface {
     constructor(
-        public price: number,
-        public count: number,
-        public created: Date) {
+        public created: Date,
+        public user = '',
+        public surname = '',
+        public email = '',
+        public phone: Array<BigInteger> = [],
+        public delivery = false,
+        public address = '',
+        public price = 0,
+        public count = 0) {
     }
 }

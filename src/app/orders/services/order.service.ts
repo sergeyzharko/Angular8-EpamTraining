@@ -12,6 +12,7 @@ export class OrderService {
   private orders: Array<Order> = JSON.parse(this.localStorageService.getItem('orders')) || [];
 
   getOrders(): Array<Order> {
+    console.log(this.orders);
     return this.orders;
   }
 
@@ -26,7 +27,3 @@ export class OrderService {
   }
 
 }
-
-
-
-

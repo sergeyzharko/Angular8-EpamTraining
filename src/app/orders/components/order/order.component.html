@@ -1,6 +1,10 @@
 <div *ngIf="orders.length; else empty">
   <div *ngFor="let order of orders">
     <ul>
+      <li>User: {{ order.user }}</li>
+      <li>Surname: {{ order.surname }}</li>
+      <li>Email: {{ order.email }}</li>
+      <li>Phones: {{ order.phones }}</li>
       <li>Price: {{ order.price | currency:'USD' }}</li>
       <li>Count: {{ order.count }}</li>
       <li>Created: {{ order.created | date }}</li>

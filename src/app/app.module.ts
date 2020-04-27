@@ -12,6 +12,7 @@ import { LayoutModule } from './layout/layout.module';
 import { AppRoutingModule } from './app-routing.module';
 import { OrdersModule } from './orders/orders.module';
 import { RootStoreModule } from './core/@ngrx/root-store.module';
+import { ValidatorsModule } from './validators/validators.module';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { RootStoreModule } from './core/@ngrx/root-store.module';
     OrdersModule,
     HttpClientModule,
     RootStoreModule,
+    ValidatorsModule,
     // MUST BE LAST
     AppRoutingModule
   ],
