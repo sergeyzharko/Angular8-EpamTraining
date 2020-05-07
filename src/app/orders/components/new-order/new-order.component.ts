@@ -89,7 +89,7 @@ export class NewOrderComponent implements OnInit, OnDestroy {
 
   onSave(): void {
     // Form model
-    console.log(this.orderForm);
+    console.log('Form model', this.orderForm);
     // Form value w/o disabled controls
     console.log(`Saved: ${JSON.stringify(this.orderForm.value)}`);
     // Form value w/ disabled controls

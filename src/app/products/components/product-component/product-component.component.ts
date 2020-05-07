@@ -14,7 +14,6 @@ export class ProductComponentComponent {
 
   public onBuyProduct(): void {
     this.buyProduct.emit(this.product);
-    console.log(`${this.product.name} has been purchased`);
   }
 
   public setClasses() {

@@ -32,16 +32,17 @@ export class CartService {
   // }
 
   cartProducts(): Observable<CartItem[]> {
-    return this.http.get<CartItem[]>(this.usersUrl).pipe(
+    const result = this.http.get<CartItem[]>(this.usersUrl || 'http://localhost:3000/cart').pipe(
       retry(3), // три попытки в случае ошибки
       publish(),
       refCount(),
       catchError(this.handleError)
     );
+    return result;
   }
 
   cartProduct(id: number): Observable<CartItem> {
-    const url = `${this.usersUrl}/${id}`;
+    const url = `${this.usersUrl || 'http://localhost:3000/cart'}/${id}`;
 
     return this.http.get<CartItem>(url).pipe(
       retry(3),
@@ -71,7 +72,7 @@ export class CartService {
   // }
 
   addProduct(product: Product): Observable<CartItem> {
-    const url = this.usersUrl;
+    const url = this.usersUrl || 'http://localhost:3000/cart';
     const item = new CartItem(product.id, product.name, 1, product.price, new Date());
     const body = JSON.stringify(item);
     const options = {
@@ -86,7 +87,7 @@ export class CartService {
   }
 
   updateProduct(user: CartItem): Observable<CartItem> {
-    const url = `${this.usersUrl}/${user.id}`;
+    const url = `${this.usersUrl || 'http://localhost:3000/cart'}/${user.id}`;
     const body = JSON.stringify(user);
     const options = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -98,7 +99,7 @@ export class CartService {
   }
 
   removeProduct(user: CartItem): Observable<CartItem> {
-    const url = `${this.usersUrl}/${user.id}`;
+    const url = `${this.usersUrl || 'http://localhost:3000/cart'}/${user.id}`;
     const body = JSON.stringify(user);
     const options = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -118,7 +119,7 @@ export class CartService {
     } else {
       // The backend returned an unsuccessful response code.
       // The response body may contain clues as to what went wrong,
-      alert(err.error.split('\n')[0]);
+      alert(err);
       console.error(`Backend returned code ${err.status}, body was: ${err.error}`);
     }
 

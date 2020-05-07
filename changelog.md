@@ -71,3 +71,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - NewOrderComponent with reactive form and validation
 - EmailDirective for validation
+
+## [7.0.0] - 2020-05-07
+### Added
+- Integrated Tests: OrderComponent, CartItemComponent, ProductComponentComponent
+- Isolated Tests: CartService, OrderService, OrderByPipe
+- Coverage Report

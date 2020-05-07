@@ -10,7 +10,7 @@ export class Order implements OrderInterface {
         public user = '',
         public surname = '',
         public email = '',
-        public phone: Array<BigInteger> = [],
+        public phone: Array<number> = [],
         public delivery = false,
         public address = '',
         public price = 0,
