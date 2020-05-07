@@ -16,7 +16,7 @@ export class CartItemComponent implements OnDestroy {
 
   public onRemoveItem(): void {
     this.removeItem.emit(this.item);
-    console.log(`${this.item.name} has been removed`);
+    console.log(`${this.item ? this.item.name : undefined} has been removed`);
   }
 
   public onPlus(): void {
@@ -29,7 +29,7 @@ export class CartItemComponent implements OnDestroy {
 
   public setStyles() {
     const styles = {
-      color: this.item.count > 5 ? 'blue' : 'black'
+      color: this.item && this.item.count > 5 ? 'blue' : 'black'
     };
     return styles;
   }

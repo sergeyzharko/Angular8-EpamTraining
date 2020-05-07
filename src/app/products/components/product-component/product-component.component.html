@@ -7,7 +7,7 @@
                 <li>Price: {{ product.price }}</li>
             </ul>
         </div>
-        <button *ngIf="product.isAvailable; else isNotAvailable" class="btn btn-primary" (click)="onBuyProduct($event)">Add</button>
+        <button *ngIf="product.isAvailable; else isNotAvailable" class="buy btn btn-primary" (click)="onBuyProduct($event)">Add</button>
         <ng-template #isNotAvailable><button disabled class="btn btn-primary">Add</button></ng-template>
     </div>
 </div>

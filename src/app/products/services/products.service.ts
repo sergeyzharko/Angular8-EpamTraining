@@ -40,7 +40,6 @@ export class ProductsService {
   // }
 
   getProduct(id: number | string): Promise<Product> {
-    console.log(id);
     const url = `${this.productsUrl}/${id}`;
 
     return this.http
